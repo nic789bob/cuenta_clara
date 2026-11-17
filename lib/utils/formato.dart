@@ -24,4 +24,3 @@ String formatearPesos(int valor) {
 // Comparar fechas sin la hora (medianoche de cada día).
 DateTime soloFecha(DateTime fecha) =>
     DateTime(fecha.year, fecha.month, fecha.day);
-

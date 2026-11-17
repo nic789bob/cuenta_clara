@@ -55,6 +55,8 @@ class TarjetaPago extends StatelessWidget {
             Text(
               '${pago.categoria.etiqueta} · ${formatearFecha(pago.fechaVencimiento)}',
             ),
+            const SizedBox(height: 2),
+            Text('Responsable: ${pago.responsable}'),
             const SizedBox(height: 4),
             Text(
               formatearPesos(pago.monto),

@@ -17,6 +17,7 @@ class FormularioPagoScreen extends StatefulWidget {
 class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _conceptoController;
+  late final TextEditingController _responsableController;
   late final TextEditingController _montoController;
   late final TextEditingController _notaController;
 
@@ -31,6 +32,9 @@ class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
     super.initState();
     final pago = widget.pagoExistente;
     _conceptoController = TextEditingController(text: pago?.concepto ?? '');
+    _responsableController = TextEditingController(
+      text: pago?.responsable ?? '',
+    );
     _montoController = TextEditingController(
       text: pago?.monto.toString() ?? '',
     );
@@ -44,6 +48,7 @@ class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
   void dispose() {
     // Los controllers deben liberarse al cerrar esta pantalla.
     _conceptoController.dispose();
+    _responsableController.dispose();
     _montoController.dispose();
     _notaController.dispose();
     super.dispose();
@@ -68,6 +73,7 @@ class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
 
     final anterior = widget.pagoExistente;
     final concepto = _conceptoController.text.trim();
+    final responsable = _responsableController.text.trim();
     final monto = int.parse(_montoController.text.trim());
     final nota = _notaController.text.trim();
 
@@ -75,6 +81,7 @@ class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
         ? Pago(
             id: DateTime.now().microsecondsSinceEpoch.toString(),
             concepto: concepto,
+            responsable: responsable,
             categoria: _categoria,
             monto: monto,
             fechaVencimiento: _fechaVencimiento,
@@ -83,6 +90,7 @@ class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
           )
         : anterior.copyWith(
             concepto: concepto,
+            responsable: responsable,
             categoria: _categoria,
             monto: monto,
             fechaVencimiento: _fechaVencimiento,
@@ -115,6 +123,23 @@ class _FormularioPagoScreenState extends State<FormularioPagoScreen> {
               validator: (valor) {
                 if (valor == null || valor.trim().isEmpty) {
                   return 'Escriba el concepto del pago';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _responsableController,
+              maxLength: 40,
+              decoration: const InputDecoration(
+                labelText: 'Responsable del pago',
+                hintText: 'Ej.: Mamá, Papá, Yo',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person_outline),
+              ),
+              validator: (valor) {
+                if (valor == null || valor.trim().isEmpty) {
+                  return 'Escriba el responsable del pago';
                 }
                 return null;
               },

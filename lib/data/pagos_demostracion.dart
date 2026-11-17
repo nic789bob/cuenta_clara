@@ -10,6 +10,7 @@ List<Pago> crearPagosDemostracion() {
     Pago(
       id: 'demo-1',
       concepto: 'Internet del hogar',
+      responsable: 'Mamá',
       categoria: CategoriaPago.servicios,
       monto: 110000,
       fechaVencimiento: relativo(3),
@@ -19,6 +20,7 @@ List<Pago> crearPagosDemostracion() {
     Pago(
       id: 'demo-2',
       concepto: 'Arriendo',
+      responsable: 'Papá',
       categoria: CategoriaPago.vivienda,
       monto: 950000,
       fechaVencimiento: relativo(-2),
@@ -28,6 +30,7 @@ List<Pago> crearPagosDemostracion() {
     Pago(
       id: 'demo-3',
       concepto: 'Transporte',
+      responsable: 'Yo',
       categoria: CategoriaPago.transporte,
       monto: 85000,
       fechaVencimiento: relativo(-1),
@@ -36,4 +39,3 @@ List<Pago> crearPagosDemostracion() {
     ),
   ];
 }
-

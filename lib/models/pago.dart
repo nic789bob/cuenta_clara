@@ -22,6 +22,7 @@ extension CategoriaPagoTexto on CategoriaPago {
 class Pago {
   final String id;
   final String concepto;
+  final String responsable;
   final CategoriaPago categoria;
   final int monto; // Pesos colombianos; entero para evitar decimales.
   final DateTime fechaVencimiento;
@@ -31,6 +32,7 @@ class Pago {
   const Pago({
     required this.id,
     required this.concepto,
+    required this.responsable,
     required this.categoria,
     required this.monto,
     required this.fechaVencimiento,
@@ -41,6 +43,7 @@ class Pago {
   // Crear una versión actualizada sin modificar el objeto anterior.
   Pago copyWith({
     String? concepto,
+    String? responsable,
     CategoriaPago? categoria,
     int? monto,
     DateTime? fechaVencimiento,
@@ -50,6 +53,7 @@ class Pago {
     return Pago(
       id: id, // El identificador no cambia durante una edición.
       concepto: concepto ?? this.concepto,
+      responsable: responsable ?? this.responsable,
       categoria: categoria ?? this.categoria,
       monto: monto ?? this.monto,
       fechaVencimiento: fechaVencimiento ?? this.fechaVencimiento,
@@ -58,4 +62,3 @@ class Pago {
     );
   }
 }
-
